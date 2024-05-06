@@ -61,7 +61,7 @@ deactivate Middle
 Frontend --> Клиент : Клиент получает ответ
 deactivate Frontend
 
-
+ 
 @endUML
 ```
 
