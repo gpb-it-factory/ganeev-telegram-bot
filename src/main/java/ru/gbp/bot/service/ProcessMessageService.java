@@ -19,7 +19,6 @@ public class ProcessMessageService {
 
     public SendMessage executeMessage(CommandType commandType, Update update) throws TelegramApiException {
         Command command=commandContainer.getCommandExecutor(commandType);
-
         return command.processCommand(update);
     }
 }

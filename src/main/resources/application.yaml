@@ -4,3 +4,8 @@ spring:
 telegram-bot:
   name: SpringDemoBot
   token: 7075026601:AAEpDpSDoyWoyD5tefIKiUYpd3QH1wPfBPA
+feign:
+  url: http://localhost:8080/v2
+  name: middle-service
+server:
+  port: 5234
