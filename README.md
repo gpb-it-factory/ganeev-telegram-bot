@@ -68,11 +68,19 @@ deactivate Frontend
 
 ## Quick start
 ### Для локального запуска требуется: 
-1) Склонировать репозиторий git clone https://github.com/gpb-it-factory/ganeev-telegram-bot.git
-2) Перейти в директорию с проектом командой cd.
-3) Собираем проект командой
+1) Создать и получить токен у бота - https://t.me/BotFather
+2) Полученный токен добавить в переменные окружения с помощью команд
+   - Для windows: **set TELEGRAM_BOT_TOKEN <Полученный токен>**
+   - Для linux: **export TELEGRAM_BOT_TOKEN =  <Полученный токен>**
+3) Склонировать репозиторий git clone https://github.com/gpb-it-factory/ganeev-telegram-bot.git
+4) Перейти в директорию с проектом командой cd.
+5) Собираем проект командой
    - Для linux ./gradlew build
    - Для windows gradlew.bat build
-4) Запускаем проект
-    - Для linux ./gradlew run
-    - Для windows gradlew.bat 
+6) Запускаем проект
+    - Для linux ./gradlew bootRun 
+    - Для windows gradlew.bat bootRun 
+### Для запуска через Docker требуется:
+1) Собрать проект gradle build
+2) Собрать образ командой  docker build -t telegram-bot  --build-arg TOKEN=<Полученный от бота токен> .
+3) Запустить контейнер командой docker run telegram-bot
