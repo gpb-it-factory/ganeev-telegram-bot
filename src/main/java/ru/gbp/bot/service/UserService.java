@@ -3,6 +3,7 @@ package ru.gbp.bot.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.gbp.bot.dto.CreateUserRequestV2;
+import ru.gbp.bot.exceptions.UserAlreadyExistsException;
 import ru.gbp.bot.feign.MiddleServiceClient;
 
 @Service
