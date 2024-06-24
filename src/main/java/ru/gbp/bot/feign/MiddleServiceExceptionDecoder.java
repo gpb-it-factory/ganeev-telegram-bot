@@ -14,5 +14,5 @@ public class MiddleServiceExceptionDecoder implements ErrorDecoder {
             case 409, 404 -> new HttpClientErrorException(HttpStatusCode.valueOf(response.status()));
             default -> errorDecoder.decode(methodKey, response);
         };
-
+    }
 }
