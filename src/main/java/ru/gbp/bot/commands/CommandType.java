@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum CommandType {
-    PING("/ping"),UNKNOWN_MES("UNKNOWN_MES"),HELP("/help");
+    PING("/ping"),UNKNOWN_MES("UNKNOWN_MES"),HELP("/help"),REGISTER("/register");
     private final String name;
 
 
