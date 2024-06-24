@@ -13,6 +13,8 @@ public class CommandsArgumentProvider implements ArgumentsProvider {
         return Stream.of(
                 org.junit.jupiter.params.provider.Arguments.of(CommandType.PING,"/ping"),
                 org.junit.jupiter.params.provider.Arguments.of(CommandType.HELP,"/help"),
+                org.junit.jupiter.params.provider.Arguments.of(CommandType.REGISTER,"/register"),
+                org.junit.jupiter.params.provider.Arguments.of(CommandType.CREATE_ACCOUNT,"/create_account"),
                 org.junit.jupiter.params.provider.Arguments.of(CommandType.UNKNOWN_MES,"unknown_mes"),
                 org.junit.jupiter.params.provider.Arguments.of(CommandType.UNKNOWN_MES,"INVALID")
         );

@@ -7,6 +7,9 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.gbp.bot.commands.impl.HelpCommandImpl;
+import ru.gbp.bot.commands.impl.PingCommandImpl;
+import ru.gbp.bot.commands.impl.UnknownCommandImpl;
 import ru.gbp.bot.service.CreateSendMessageService;
 
 import java.util.List;
