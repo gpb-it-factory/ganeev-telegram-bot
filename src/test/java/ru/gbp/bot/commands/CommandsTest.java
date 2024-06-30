@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.gbp.bot.commands.impl.HelpCommandImpl;
@@ -21,20 +22,14 @@ public class CommandsTest {
     CreateSendMessageService createSendMessageService;
 
 
-    @ParameterizedTest
-    @ArgumentsSource(CommandsArgumentProvider.class)
-    void createCommandTest(CommandType commandType, String commandTypeName) {
-        Assertions.assertEquals(commandType, CommandType.createCommandType(commandTypeName));
-    }
 
     @ParameterizedTest
-    @EnumSource(CommandType.class)
-    void getCommand(CommandType commandType) {
+    @ValueSource(strings = {"/ping","/help","asdf[asd",""})
+    void getCommand(String commandType) {
         Command commandPing = new PingCommandImpl(createSendMessageService);
-        Command commandUnknown = new UnknownCommandImpl(createSendMessageService);
+        UnknownCommandImpl commandUnknown = new UnknownCommandImpl(createSendMessageService);
         Command commandHelp = new HelpCommandImpl(createSendMessageService);
-
-        CommandContainer commandContainer = new CommandContainer(List.of(commandPing, commandUnknown, commandHelp));
-        commandContainer.getCommandExecutor(commandType);
+        CommandContainer commandContainer = new CommandContainer(List.of(commandPing,commandHelp), commandUnknown);
+        Assertions.assertNotNull(commandContainer.getCommandExecutor(commandType));
     }
 }

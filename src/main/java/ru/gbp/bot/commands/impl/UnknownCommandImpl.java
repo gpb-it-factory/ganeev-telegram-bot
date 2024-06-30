@@ -6,7 +6,6 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.gbp.bot.commands.Command;
-import ru.gbp.bot.commands.CommandType;
 import ru.gbp.bot.service.CreateSendMessageService;
 
 
@@ -20,7 +19,7 @@ public class UnknownCommandImpl implements Command {
     }
 
     @Override
-    public CommandType getType() {
-        return CommandType.UNKNOWN_MES;
+    public String getType() {
+        return "UNKNOWN_MES";
     }
 }
