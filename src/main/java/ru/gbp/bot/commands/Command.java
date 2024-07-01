@@ -7,5 +7,5 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public interface Command {
     SendMessage processCommand(Update update) throws TelegramApiException;
-    CommandType getType();
+    String getType();
 }
