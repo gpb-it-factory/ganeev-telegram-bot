@@ -84,3 +84,7 @@ deactivate Frontend
 1) Собрать проект gradle build
 2) Собрать образ командой  docker build -t telegram-bot  --build-arg TOKEN=<Полученный от бота токен> .
 3) Запустить контейнер командой docker run telegram-bot
+
+
+### График в Kebana
+![img.png](img.png)
