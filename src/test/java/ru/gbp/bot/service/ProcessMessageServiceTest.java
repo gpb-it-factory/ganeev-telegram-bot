@@ -74,10 +74,6 @@ class ProcessMessageServiceTest {
         processMessageService = new ProcessMessageService(commandContainer);
     }
 
-    @Test
-    void executeMessagePingTest() throws TelegramApiException {
-        SendMessage sendMessage = processMessageService.executeMessage("/ping", getUpdateWithMessage("/ping"));
-
 
     @Test
     void executeMessagePingTest() throws TelegramApiException {
@@ -122,9 +118,9 @@ class ProcessMessageServiceTest {
 
     @Test
     void successExecuteCreateAccountMessageTest() throws TelegramApiException {
-        Mockito.when(userService.createAccount(1,"User1")).thenReturn(ResponseEntity.ok(new AccountsListResponseV2("111","Акционный",5000d)));
+        Mockito.when(userService.createAccount(1,"Акционный")).thenReturn(ResponseEntity.ok(new AccountsListResponseV2("111","Акционный",5000d)));
 
-        SendMessage sendMessage = processMessageService.executeMessage("/create_account", getUpdateWithMessage("/create_account"));
+        SendMessage sendMessage = processMessageService.executeMessage("/create_account", getUpdateWithMessage("/create_account Акционный"));
 
         Assertions.assertEquals("1", sendMessage.getChatId());
         Assertions.assertEquals("Счет успешно создан", sendMessage.getText());
@@ -132,18 +128,18 @@ class ProcessMessageServiceTest {
 
     @Test
     void failedExecuteCreateAccountMessageTest() throws TelegramApiException {
-        Mockito.when(userService.createAccount(1,"User1")).thenThrow(new HttpClientErrorException(HttpStatusCode.valueOf(409)));
+        Mockito.when(userService.createAccount(1,"Акционный")).thenThrow(new HttpClientErrorException(HttpStatusCode.valueOf(409)));
 
-        SendMessage sendMessage = processMessageService.executeMessage("/create_account", getUpdateWithMessage("/create_account"));
+        SendMessage sendMessage = processMessageService.executeMessage("/create_account", getUpdateWithMessage("/create_account Акционный"));
 
         Assertions.assertEquals("1", sendMessage.getChatId());
         Assertions.assertEquals("Счет уже был зарегистрирован", sendMessage.getText());
     }
     @Test
     void failedExecuteCreateAccountMessageForNotExistUserTest() throws TelegramApiException {
-        Mockito.when(userService.createAccount(1,"User1")).thenThrow(new HttpClientErrorException(HttpStatusCode.valueOf(404)));
+        Mockito.when(userService.createAccount(1,"Акционный")).thenThrow(new HttpClientErrorException(HttpStatusCode.valueOf(404)));
 
-        SendMessage sendMessage = processMessageService.executeMessage("/create_account", getUpdateWithMessage("/create_account"));
+        SendMessage sendMessage = processMessageService.executeMessage("/create_account", getUpdateWithMessage("/create_account Акционный"));
 
         Assertions.assertEquals("1", sendMessage.getChatId());
         Assertions.assertEquals("Для создания счета нужна регистрация", sendMessage.getText());
