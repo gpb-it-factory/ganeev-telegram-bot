@@ -15,10 +15,15 @@ import ru.gbp.bot.feign.MiddleServiceClient;
 @AllArgsConstructor
 public class UserService {
     private final MiddleServiceClient middleServiceClient;
+
+
+    public ResponseEntity<AccountsListResponseV2> getAccount(long userId) {
+        return middleServiceClient.getAccount(userId);
+    }
     public ResponseEntity<UserResponseV2> registerUser(long userId, String userName){
         return middleServiceClient.createUser(new CreateUserRequestV2(userId, userName));
     }
-    public ResponseEntity<AccountsListResponseV2> createAccount(long userId, String accountName) {
+    public ResponseEntity<AccountsListResponseV2> createAccount(long userId, String accountName){
         return middleServiceClient.createAccount(userId, new CreateAccountRequestV2(accountName));
     }
 }

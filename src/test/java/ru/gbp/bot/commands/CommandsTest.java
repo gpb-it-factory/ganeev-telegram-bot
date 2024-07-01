@@ -30,6 +30,7 @@ public class CommandsTest {
         UnknownCommandImpl commandUnknown = new UnknownCommandImpl(createSendMessageService);
         Command commandHelp = new HelpCommandImpl(createSendMessageService);
         CommandContainer commandContainer = new CommandContainer(List.of(commandPing,commandHelp), commandUnknown);
+
         Assertions.assertNotNull(commandContainer.getCommandExecutor(commandType));
     }
 }

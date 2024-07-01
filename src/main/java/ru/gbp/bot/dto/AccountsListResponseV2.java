@@ -14,5 +14,4 @@ public class AccountsListResponseV2 {
 
     private double amount;
 
-
 }
