@@ -16,6 +16,7 @@ import ru.gbp.bot.feign.MiddleServiceClient;
 public class UserService {
     private final MiddleServiceClient middleServiceClient;
 
+
     public ResponseEntity<AccountsListResponseV2> getAccount(long userId) {
         return middleServiceClient.getAccount(userId);
     }

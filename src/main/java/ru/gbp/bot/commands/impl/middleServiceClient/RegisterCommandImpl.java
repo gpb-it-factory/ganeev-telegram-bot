@@ -2,7 +2,9 @@ package ru.gbp.bot.commands.impl.middleServiceClient;
 
 import lombok.AllArgsConstructor;
 
+
 import lombok.extern.slf4j.Slf4j;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -16,7 +18,9 @@ import ru.gbp.bot.service.UserService;
 
 @Component
 @AllArgsConstructor
+
 @Slf4j
+
 public class RegisterCommandImpl implements MiddleServiceCommand {
     private final CreateSendMessageService createSendMessageService;
     private final UserService userService;
@@ -24,12 +28,14 @@ public class RegisterCommandImpl implements MiddleServiceCommand {
     public SendMessage processCommand(Update update) throws TelegramApiException {
         String result;
         try{
+
             log.debug("Регистрация пользователя");
             var response = userService.registerUser(update.getMessage().getChatId(),update.getMessage().getChat().getUserName());
             result = "Вы успешно зарегистрировались";
             if(response.hasBody()){
                 log.debug("Пользователь {} был зарегистрирован ",response.getBody().getUserId());
             }
+
         }catch (HttpClientErrorException exception){
             result = handleException(exception);
         }
@@ -44,10 +50,12 @@ public class RegisterCommandImpl implements MiddleServiceCommand {
     @Override
     public String handleException(HttpClientErrorException exception) {
         if (exception.getStatusCode().isSameCodeAs(HttpStatus.CONFLICT)){
+
             log.warn("Попытка повторной регистрации");
             return "Вы уже зарегистрированы";
         }
         log.error("Middle service unexpected error");
+
         return "Сервер временно недоступен";
     }
 }

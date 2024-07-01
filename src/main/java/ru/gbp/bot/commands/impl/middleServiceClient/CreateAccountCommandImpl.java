@@ -22,7 +22,9 @@ import ru.gbp.bot.service.UserService;
 
 @Component
 @AllArgsConstructor
+
 @Slf4j
+
 public class CreateAccountCommandImpl implements MiddleServiceCommand {
     private final CreateSendMessageService createSendMessageService;
     private final UserService userService;
@@ -55,6 +57,7 @@ public class CreateAccountCommandImpl implements MiddleServiceCommand {
     @Override
     public String handleException(HttpClientErrorException exception) {
         if (exception.getStatusCode().isSameCodeAs(HttpStatus.CONFLICT)){
+
             log.warn("Попытка создать существующий счет");
             return  "Счет уже был зарегистрирован";
         }

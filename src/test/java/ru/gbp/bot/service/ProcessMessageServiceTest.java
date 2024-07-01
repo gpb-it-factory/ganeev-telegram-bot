@@ -20,6 +20,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.gbp.bot.commands.Command;
 import ru.gbp.bot.commands.CommandContainer;
 
+
 import ru.gbp.bot.commands.impl.HelpCommandImpl;
 import ru.gbp.bot.commands.impl.PingCommandImpl;
 import ru.gbp.bot.commands.impl.UnknownCommandImpl;
@@ -30,6 +31,7 @@ import ru.gbp.bot.commands.impl.middleServiceClient.RegisterCommandImpl;
 import ru.gbp.bot.dto.AccountsListResponseV2;
 
 import ru.gbp.bot.dto.UserResponseV2;
+
 
 
 import java.util.ArrayList;
@@ -58,6 +60,7 @@ class ProcessMessageServiceTest {
         return update;
     }
 
+
     @BeforeEach
     void fillCommandContainer(){
         List<Command> commands = new ArrayList<>(List.of(
@@ -75,6 +78,10 @@ class ProcessMessageServiceTest {
     void executeMessagePingTest() throws TelegramApiException {
         SendMessage sendMessage = processMessageService.executeMessage("/ping", getUpdateWithMessage("/ping"));
 
+
+    @Test
+    void executeMessagePingTest() throws TelegramApiException {
+        SendMessage sendMessage = processMessageService.executeMessage("/ping", getUpdateWithMessage("/ping"));
         Assertions.assertEquals("1", sendMessage.getChatId());
         Assertions.assertEquals("/pong", sendMessage.getText());
     }
@@ -84,11 +91,11 @@ class ProcessMessageServiceTest {
 
         Assertions.assertEquals("1", sendMessage.getChatId());
         Assertions.assertEquals("Основные команды: \n"+"/get_account\n"+ "/help\n"+ "/create_account\n" + "/ping\n" + "/register\n", sendMessage.getText());
+
     }
     @Test
     void executeDontExistMessageTest() throws TelegramApiException {
         SendMessage sendMessage = processMessageService.executeMessage("123asdf", getUpdateWithMessage("Нету такой команды"));
-
         Assertions.assertEquals("1", sendMessage.getChatId());
         Assertions.assertEquals("Неизвестная команда", sendMessage.getText());
     }
