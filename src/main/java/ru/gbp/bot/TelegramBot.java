@@ -7,8 +7,6 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import ru.gbp.bot.commands.CommandContainer;
-import ru.gbp.bot.commands.CommandType;
 import ru.gbp.bot.config.BotConfigProperties;
 import ru.gbp.bot.service.ProcessMessageService;
 
@@ -35,7 +33,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             List<String> messageInfo = List.of(message.split(" "));
 
-            CommandType commandType = CommandType.createCommandType(messageInfo.get(0));
+            String commandType = messageInfo.get(0);
 
             try {
                 SendMessage sendMessage = processMessageService.executeMessage(commandType,update);
